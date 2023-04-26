@@ -1,0 +1,39 @@
+.Edit-values-card {
+    width: 69%;
+    height: 17%;
+    background-color: #7F7979;
+}
+
+.Title {
+    padding-top: 0.75%;
+    display: flex;
+    justify-content: center;
+    font-size: 125%;
+    font-family: 'Sora', sans-serif;
+}
+
+
+.Input {
+    margin-right: 5%;
+    padding: 1%;
+    width: 16%;
+    font-family: 'Sora', sans-serif;
+}
+
+
+.Save-button {
+    width: 18%;
+    background-color: #EF476F;
+    color: white;
+    border: none;
+}
+
+
+.Input-container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2%;
+    
+    
+
+}
