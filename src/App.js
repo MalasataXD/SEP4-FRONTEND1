@@ -1,8 +1,9 @@
+import { EditValues } from "./components/EditValues";
 
 
 function App() {
   return (
-   <div>test</div>
+   <EditValues/>
   );
 }
 
