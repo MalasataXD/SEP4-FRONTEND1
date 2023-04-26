@@ -1,8 +1,9 @@
+import LiveStats from "./components/LiveValues";
 
 
 function App() {
   return (
-   <div>test</div>
+   <LiveStats/>
   );
 }
 
