@@ -8,11 +8,12 @@ export default function LiveStats()
     const [Temperature,setTemperature] = useState(20);
     const [Humidity,setHumidity] = useState(20)
     const [Carbon,setCarbon] = useState(13)
+    const [Counter,setCounter] = useState(1)
 
     useEffect(() =>
     {
         setTimeout(() =>  {fetchData()},120000) // * Waits to 2 mins between each FetchData
-    },)
+    },[Counter])
 
     async function fetchData()
     {
@@ -23,9 +24,11 @@ export default function LiveStats()
         }
         const data = await response.json() // * Convert from JSON
         // * Create DATA object
-        setTemperature(data.temp);
-        setHumidity(data.humidity);
-        setCarbon(data.co2);
+        setTemperature(data[Counter].temp);
+        setHumidity(data[Counter].humidity);
+        setCarbon(data[Counter].co2);
+        let counter = Counter + 1;
+        setCounter(counter);
     }
 
     return (
