@@ -1,5 +1,6 @@
 import {useState,useEffect} from "react";
 import "./LiveValue.css"
+import { URL } from "config.js"
 
 export default function LiveStats()
 {
@@ -7,33 +8,26 @@ export default function LiveStats()
     const [Temperature,setTemperature] = useState(20);
     const [Humidity,setHumidity] = useState(20)
     const [Carbon,setCarbon] = useState(13)
-    const [Counter,setCounter] = useState(1);
-
-    // TODO: FETCH TEMPERATURE FROM API
 
     useEffect(() =>
     {
         setTimeout(() =>  {fetchData()},120000) // * Waits to 2 mins between each FetchData
-    },[Counter])
+    },)
 
     async function fetchData()
     {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${Counter}`);
+        const response = await fetch(URL);
         if(!response.ok)
         {
             throw new Error("Could not get information...")
         }
         const data = await response.json() // * Convert from JSON
         // * Create DATA object
-        setTemperature(data.stats[0].base_stat);
-        setHumidity(data.stats[1].base_stat);
-        setCarbon(data.stats[2].base_stat);
-        let counter = Counter + 1
-        setCounter(counter);
-
+        setTemperature(data.temp);
+        setHumidity(data.humidity);
+        setCarbon(data.co2);
     }
 
-    // TODO: DISPLAY FOUND TEMPERATURE
     return (
         <div className="container">
             <div className="section temperature">
