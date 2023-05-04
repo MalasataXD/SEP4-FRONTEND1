@@ -1,14 +1,14 @@
+import React from "react";
 import {useState,useEffect} from "react";
 import "./LiveValue.css"
-import { URL } from "config.js"
 
 export default function LiveStats()
 {
     // * STATS
-    const [Temperature,setTemperature] = useState(20);
-    const [Humidity,setHumidity] = useState(20)
-    const [Carbon,setCarbon] = useState(13)
-    const [Counter,setCounter] = useState(1)
+    const [Temperature,setTemperature] = useState("20");
+    const [Humidity,setHumidity] = useState("20")
+    const [Carbon,setCarbon] = useState("13")
+    const [Counter,setCounter] = useState(0);
 
     useEffect(() =>
     {
@@ -17,18 +17,20 @@ export default function LiveStats()
 
     async function fetchData()
     {
-        const response = await fetch(URL);
+        const response = await fetch("http://10.154.220.53:8080/data",{mode:'cors'});
         if(!response.ok)
         {
             throw new Error("Could not get information...")
         }
         const data = await response.json() // * Convert from JSON
         // * Create DATA object
-        setTemperature(data[Counter].temp);
-        setHumidity(data[Counter].humidity);
-        setCarbon(data[Counter].co2);
-        let counter = Counter + 1;
+        console.log(data)
+        setTemperature(data[Counter]?.temp);
+        setHumidity(data[Counter]?.humidity);
+        setCarbon(data[Counter]?.co2);
+        let counter = Counter + 1
         setCounter(counter);
+
     }
 
     return (

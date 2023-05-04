@@ -1,1 +1,1 @@
-const URL = "localhost:8080/data";
+export const URL = "localhost:8080/data";
